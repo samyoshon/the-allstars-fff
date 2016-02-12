@@ -6,14 +6,65 @@ body {
 h1 {
 	font-family: Nunito;
 	font-size: 50px;
+	margin-top: 20;
+	color: #e9188d;
+	display: inline;
 }
 
-.main-product {
-	height: 350px;
-	width: 20%;
-	border: 5px solid red;
-	display: inline-block;
+.fff-logo {
+	margin: 20px 10px -20px 10px;
+	height: 70px;
 }
+
+/* ========== MAIN IMAGE ==========*/
+
+.main-product {
+	height: 400px;
+	width: 350px;
+	display: inline-block;
+	margin: 50px 20px;
+	border-radius: 50px;
+	opacity: 0;
+	font-family: Nunito;
+	color: #FFFFFF;
+}
+
+.main-product--name {
+	font-size: 20px;
+	margin: 0;
+	color: #FFFFFF;
+}
+
+.main-product--description {
+	padding: 0 40px;
+	font-size: 12px;
+}
+
+
+.main-container .western {
+	background-color: #E91E63;
+}
+
+.main-container .eastern {
+	background-color: #3F51B5;
+}
+
+.main-product img {
+	padding: 30px 0px;
+}
+
+.main-product:nth-child(2) {
+	margin-left: -350px;
+	background-color: #000000;
+	opacity: 0.4;
+}
+
+.main-product:nth-child(3){
+	background-color: #000000;
+	opacity: 0.4;
+}
+
+/* ========== THUMBNAILS ==========*/
 
 .thumb-product {
 	height: 70px;
@@ -29,16 +80,29 @@ h1 {
 	opacity: 0.7;
 }
 
+.western-flicker {
+	background-color: #E91E63;
+}
+
 .western:hover {
-	background-color: #CB1744;
+	background-color: #E91E63;
 	opacity: 1;
 	transition: background-color 3s;
 	transition: opacity 0.8s;
 }
 
+.eastern-flicker {
+	background-color: #3F51B5;
+}
+
 .eastern:hover {
-	background-color: #005FA8;
+	background-color: #3F51B5;
 	opacity: 1;
 	transition: background-color 3s;
 	transition: opacity 0.8s;
 }
+
+.backgroundRed {
+	background-color: red;
+}
+
