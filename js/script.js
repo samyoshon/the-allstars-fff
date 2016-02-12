@@ -6,7 +6,6 @@ $(document).ready(function(){
 		{name: 'Carmelo Anthony', position: 'F', summary: '', conference: 'eastern', img: 'http://l.yimg.com/bt/api/res/1.2/b5J6TdYHZcnvdJa2UumrBA--/YXBwaWQ9eW5ld3NfbGVnbztmaT1maWxsO2g9MjMwO3E9NzU7dz0zNDU-/https://s.yimg.com/xe/i/us/sp/v/nba_cutout/players_l/20151027/3706.png'},
 		{name: 'Dwyane Wade', position: 'G', summary: '', conference: 'eastern', img: 'http://l3.yimg.com/bt/api/res/1.2/EXVaEedHkHBB0OeCuAPPHw--/YXBwaWQ9eW5ld3NfbGVnbztmaT1maWxsO2g9MjMwO3E9NzU7dz0zNDU-/https://s.yimg.com/xe/i/us/sp/v/nba_cutout/players_l/20151027/3708.png'},
 		{name: 'Kyle Lowry', position: 'G', summary: '', conference: 'eastern', img: 'http://l2.yimg.com/bt/api/res/1.2/7obhXqjgAA1TtnUlqPecKQ--/YXBwaWQ9eW5ld3NfbGVnbztmaT1maWxsO2g9MjMwO3E9NzU7dz0zNDU-/https://s.yimg.com/xe/i/us/sp/v/nba_cutout/players_l/20151027/4152.png'},
-		{name: 'Jimmy Butler', position: 'G/F', summary: '', conference: 'eastern', img: 'http://l3.yimg.com/bt/api/res/1.2/bsoh3VolUIPiQrNmChWp7A--/YXBwaWQ9eW5ld3NfbGVnbztmaT1maWxsO2g9MjMwO3E9NzU7dz0zNDU-/https://s.yimg.com/xe/i/us/sp/v/nba_cutout/players_l/20151027/4912.png'},
 		{name: 'DeMar DeRozan', position: 'G', summary: '', conference: 'eastern', img: 'http://l2.yimg.com/bt/api/res/1.2/XaV7cqkidJGXlSzICMpzCw--/YXBwaWQ9eW5ld3NfbGVnbztmaT1maWxsO2g9MjMwO3E9NzU7dz0zNDU-/https://s.yimg.com/xe/i/us/sp/v/nba_cutout/players_l/20151027/4614.png'},
 		{name: 'Paul Millsap', position: 'F', summary: '', conference: 'eastern', img: 'http://l2.yimg.com/bt/api/res/1.2/_hB6He8BZVZm4ABrWTYkWg--/YXBwaWQ9eW5ld3NfbGVnbztmaT1maWxsO2g9MjMwO3E9NzU7dz0zNDU-/https://s.yimg.com/xe/i/us/sp/v/nba_cutout/players_l/20151027/4175.png'},
 		{name: 'Andre Drummond', position: 'C', summary: '', conference: 'eastern', img: 'http://l3.yimg.com/bt/api/res/1.2/uVtpLnEm.2fh4HN1U.hojg--/YXBwaWQ9eW5ld3NfbGVnbztmaT1maWxsO2g9MjMwO3E9NzU7dz0zNDU-/https://s.yimg.com/xe/i/us/sp/v/nba_cutout/players_l/20151027/5015.png'},
@@ -30,29 +29,25 @@ $(document).ready(function(){
 
 	var activeAllstars = [];
 
-	// var appendProducts = function(products){
-	// 	var newDivs = "<div class='magic'></div>";
-	// 	products.forEach(function(product){
-	// 		$('.hello').append(newDivs);
-	// 	});
-	// };
-
 	//Function to append all products as thumbnail views
 
 	var appendProducts = function(products){
 		for (var i = 0; products.length > i; i++) {
-			var newDivs = "<div class='thumb-product' id='"+i+"'><img class='thumb-image' src="+ products[i].img + "></div>";
+			var newDivs = "<img class='thumb-image "+ products[i].conference +"' src="+ products[i].img +" id="+ i +">";
 			$('.thumb-container').append(newDivs);
 		}
-		
+
 		initClick();
 	};
 
 	//Click function to listen to which thumbnail has been clicked
 	
 	var initClick = function(){
-		$('.thumb-product').click(function(){
+		$('.thumb-image').click(function(){
 			var id = this.id;
+			var name = this.name;
+			var position = this.position;
+
 			if (activeAllstars.length === 3) {
 				activeAllstars.pop();
 				activeAllstars.unshift(id);
@@ -60,23 +55,48 @@ $(document).ready(function(){
 			else {
 				activeAllstars.unshift(id);
 			}
-			renderActives(activeAllstars);
+			renderActives(activeAllstars, name, position);
 		});
 	};
 
 	//Function to render recently viewed products
 
-	var renderActives = function(actives){
+	var renderActives = function(actives, name, position){
 		$('.main-container').empty();
 		
+		console.log("actives: " + actives);
+		console.log("name: " + name);
+		console.log("position: " + position);
+
 		actives.forEach(function(active){
-			console.log(active);
 			var newDivs = "<div class='main-product' id='"+active+"'></div>";
 			$('.main-container').append(newDivs);
 		});
 	};
 
-	appendProducts(nbaAllstars);
+
+	//Function to shuffle array
+
+	function shuffle(array) {
+		var currentIndex = array.length, temporaryValue, randomIndex;
+
+		// While there remain elements to shuffle...
+		while (0 !== currentIndex) {
+
+		// Pick a remaining element...
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
+		
+		// And swap it with the current element.
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
+	}
+
+	return array;
+	}
+
+	appendProducts(shuffle(nbaAllstars));
 
 });
 
