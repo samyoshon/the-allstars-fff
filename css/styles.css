@@ -1,0 +1,26 @@
+body {
+	text-align: center;
+	margin: 0 20px;
+}
+
+h1 {
+	font-family: Nunito;
+	font-size: 50px;
+}
+
+.main-product {
+	height: 350px;
+	width: 20%;
+	border: 5px solid red;
+	display: inline-block;
+}
+
+.thumb-product {
+	height: 70px;
+	border: 1px solid black;
+	display: inline-block;
+}
+
+.thumb-image {
+	height: 70px;
+}
